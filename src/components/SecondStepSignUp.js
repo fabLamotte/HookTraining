@@ -16,6 +16,9 @@ const SecondStepSignUp = (props) => {
     const [lastname, setLastname] = useState(null)
     const [firstnameErrorMessage, setFirstnameErrorMessage] = useState(null)
     const [lastnameErrorMessage, setLastnameErrorMessage] = useState(null)
+    const [years, setYears] = useState(null)
+    const [months, setMonths] = useState(null)
+    const [days, setDays] = useState(null)
 
     const verifyFirstname = () => {
         if(firstname == ''){
@@ -25,7 +28,7 @@ const SecondStepSignUp = (props) => {
             setFirstnameErrorMessage(null)
             firstnameErrorState = false
         }
-    };
+    }
 
     const verifyLastname = () => {
         if(lastname == ''){
@@ -35,7 +38,7 @@ const SecondStepSignUp = (props) => {
             setLastnameErrorMessage(null)
             lastnameErrorState = false
         }
-    };
+    }
 
     return (
         <View style={{flex:1}}>
@@ -62,7 +65,8 @@ const SecondStepSignUp = (props) => {
                         value={firstname}
                         onChangeText={setFirstname}
                         onBlur={verifyFirstname}
-                        onFocus={setFirstnameErrorMessage(null) }
+                        onFocus={() => setFirstnameErrorMessage('')}
+                        placeholder="Entrez votre prénom"
                     />
                     <Text style={styles.errors}>{firstnameErrorMessage}</Text>
                 </View>
@@ -74,13 +78,14 @@ const SecondStepSignUp = (props) => {
                         value={lastname}
                         onChangeText={setLastname}
                         onBlur={verifyLastname}
-                        onFocus={setLastnameErrorMessage(null)}
+                        onFocus={() => setLastnameErrorMessage('')}
+                        placeholder="Entrez votre nom de famille"
                     />
                     <Text style={styles.errors}>{lastnameErrorMessage}</Text>
                 </View>
 
                 <View style={styles.blockform}>
-                    <DatePicker />
+                    <DatePicker {...props} years={years} months={months} days={days} />
                 </View>
             </ScrollView>
         </View>
@@ -93,22 +98,31 @@ const styles = StyleSheet.create({
         marginTop:20
     },
     blockform:{
-        marginHorizontal:40
+        marginHorizontal:40,
+        marginVertical:5
     },
     labels:{
         fontSize:22,
-        color:'#707070'
+        color:'#707070',
+        marginVertical:5
     },
     select:{
         height:50,
         borderWidth:1,
         borderColor:'#707070',
         width:'100%',
-        borderRadius:40,
+        borderRadius:20,
         paddingHorizontal:10,
     },
     errors:{
         color:'red'
+    },
+    inputs:{
+        borderWidth:1,
+        borderColor:'#707070',
+        borderRadius:20,
+        height:50,
+        padding:15
     }
 })
 
