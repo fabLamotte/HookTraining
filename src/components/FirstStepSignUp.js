@@ -5,8 +5,12 @@ import Icon from 'react-native-vector-icons/Ionicons'
 
 const SignUp = (props) => {
     const {
-        navigation
+        navigation,
+        finalEmail,
+        finalPassword
     } = props
+
+    console.log(props)
 
     let errorEmailState = false
     let errorPasswordState = false
@@ -82,6 +86,12 @@ const SignUp = (props) => {
         }
     }
 
+    const SaveData = () =>{
+        finalEmail(email)
+        finalPassword(password)
+        navigation.navigate('secondStep')
+    }
+
     return(
         <View style={styles.container}>
             <Header navigation={navigation} title="Inscription" />
@@ -132,7 +142,7 @@ const SignUp = (props) => {
                         <Text style={styles.errors}>{errorPasswordCheck}</Text>
                     </View>
                     <View style={styles.submitForm}>
-                        <TouchableOpacity style={styles.nextStep} onPress={(() => navigation.navigate(''))} disabled={buttonHidden}>
+                        <TouchableOpacity style={styles.nextStep} onPress={(() => SaveData())} disabled={buttonHidden}>
                             <Text style={styles.nextText}>SUIVANT</Text>
                             <Icon name={iconSubmit} style={styles.arrowRight} />
                         </TouchableOpacity>

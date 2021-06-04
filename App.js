@@ -7,18 +7,31 @@ import AccueilScreen from './src/screens/AccueilScreen'
 import SignUp from './src/screens/SignUp'
 import SignIn from './src/screens/SignIn'
 
-import USERS from './assets/Users.json' 
-
 const Stack = createStackNavigator()
 
 export default function App() {
+  const [FinalCivility, setFinalCivility] = useState('')
+  const [FinalLastname, setFinalLastname] = useState('')
+  const [FinalFirstname, setFinalFirstname] = useState('')
+  const [finalEmail, setFinalEmail] = useState('')
+  const [finalPassword, setFinalPassword] = useState('')
+
   return (
     <View style={styles.container}>
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Accueil" screenOptions={{ headerShown: false }} >
           <Stack.Screen name="Accueil" component={AccueilScreen} />
-          <Stack.Screen name="Inscription" component={SignUp} />
-          <Stack.Screen name="Connexion" component={SignIn} />
+          <Stack.Screen name="Inscription" component={SignUp} 
+            setFinalCivility={setFinalCivility}
+            setFinalLastname={setFinalLastname}
+            setFinalFirstname={setFinalFirstname}
+            setFinalEmail={setFinalEmail}
+            setFinalPassword={setFinalPassword}
+          />
+          <Stack.Screen name="Connexion" component={SignIn} 
+            finalEmail={finalEmail}
+            finalPassword={finalPassword}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </View>

@@ -10,23 +10,27 @@ const Sign = createStackNavigator()
 
 const SignUp = (props) => {
     const {
-        navigation
+        navigation,
+        setFinalCivility,
+        setFinalLastname,
+        setFinalFirstname,
+        setFinalFirstname,
+        setFinalPassword,
     } = props
 
-
-    const [civility, setCivility] = useState('')
-    const [lastname, setLastname] = useState('')
-    const [firstname, setFirstname] = useState('')
-    const [birthday, setBirthday] = useState('')
+    
 
     return(
-        <Sign.Navigator initialRouteName="secondStep" screenOptions={{ headerShown: false }}>
+        <Sign.Navigator initialRouteName="firstStep" screenOptions={{ headerShown: false }}>
+            
             <Sign.Screen name="firstStep">
-                {() => <FirstStepSignUp {...props} navigation={navigation} />}
+                {() => <FirstStepSignUp {...props} navigation={navigation} finalEmail={setFinalEmail} finalPassword={setFinalPassword} />}
             </Sign.Screen>
+
             <Sign.Screen name="secondStep">
-                {() => <SecondStepSignUp {...props} navigation={navigation} />}
+                {() => <SecondStepSignUp {...props} navigation={navigation} setFinalCivility={setFinalCivility} setFinalLastname={setFinalLastname} setFinalFirstname={setFinalFirstname} />}
             </Sign.Screen>
+
         </Sign.Navigator>
     )
 }

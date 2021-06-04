@@ -92,7 +92,7 @@ const Connexion = (props) => {
                     <Text style={styles.error}>{passwordError}</Text>
                 </View>
                 <View style={styles.connectZone}>
-                    <TouchableOpacity disabled={buttonHidden} style={styles.connectButton} onPress={() => alert('connect')}>
+                    <TouchableOpacity disabled={buttonHidden} style={styles.connectButton} onPress={() => Test()}>
                         <Text style={styles.connectText}>SE CONNECTER</Text>
                     </TouchableOpacity> 
                 </View>
